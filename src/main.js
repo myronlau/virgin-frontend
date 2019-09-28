@@ -1,10 +1,22 @@
 import Vue from 'vue'
-import { Button } from 'ant-design-vue'
+import {
+  Layout,
+  Menu,
+  Icon,
+  LocaleProvider,
+  Dropdown,
+  Avatar
+} from 'ant-design-vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 
-Vue.component(Button.name, Button)
+Vue.use(Layout)
+Vue.use(Menu)
+Vue.use(Icon)
+Vue.use(LocaleProvider)
+Vue.use(Dropdown)
+Vue.use(Avatar)
 
 Vue.config.productionTip = false
 
