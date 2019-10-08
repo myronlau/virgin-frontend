@@ -5,14 +5,11 @@
   v-model="collapsed"
   >
     <div class="logo" />
-    <a-menu theme="dark" mode="inline" :defaultSelectedKeys="['1']" :openKeys="openKeys" @openChange="onOpenChange">
-      <a-menu-item key="1">
+    <a-menu theme="dark" mode="inline" :defaultSelectedKeys="['1']" :openKeys="openKeys" @openChange="onOpenChange" >
+      <!-- <a-menu-item key="1">
         <a-icon type="dashboard" />
         <span>Dashaboard</span>
       </a-menu-item>
-      <!-- <a-sub-menu key="1">
-        <span slot="title"><a-icon type="dashboard" /><span>Dashaboard</span></span>
-      </a-sub-menu> -->
       <a-sub-menu key="sub1">
         <span slot="title"><a-icon type="mail" /><span>Navigation One</span></span>
         <a-menu-item key="5">Option 5</a-menu-item>
@@ -28,7 +25,21 @@
       <a-menu-item key="3">
         <a-icon type="setting" />
         <span>Setting</span>
-      </a-menu-item>
+      </a-menu-item> -->
+
+      <template v-for="item in menuList">
+        <a-menu-item v-if="!item.children" :key="item.key">
+          <a-icon :type= "item.icon" />
+          <span>{{item.title}}</span>
+        </a-menu-item>
+        <a-sub-menu v-if="item.children" :key="item.key">
+          <span slot="title"><a-icon :type="item.icon" /><span>{{item.title}}</span></span>
+          <a-menu-item v-for="subitem in item.children" :key="subitem.key">
+            <a-icon type="subitem.icon" />
+            <span>{{subitem.title}}</span>
+          </a-menu-item>
+        </a-sub-menu>
+      </template>
     </a-menu>
   </a-layout-sider>
 </template>
@@ -38,9 +49,66 @@ export default {
   name: 'GlobalSider',
   data() {
     return {
+      //If update menu list, please also update rootSubmenuKeys.
       rootSubmenuKeys: ['1', 'sub1', 'sub2', '3'],
       openKeys: [],
-      cachedOpenKeys: []
+      cachedOpenKeys: [],
+      menuList: [
+        {
+          key: '1',
+          title: 'Dashboard',
+          icon: 'dashboard'
+        },
+        {
+          key: 'sub1',
+          title: 'Navigation One',
+          icon: 'mail',
+          children: [
+            {
+              key: 5,
+              title: 'Option 5',
+              icon: ''
+            },
+            {
+              key: 6,
+              title: 'Option 6',
+              icon: ''
+            },
+            {
+              key: 7,
+              title: 'Option 7',
+              icon: ''
+            },
+            {
+              key: 8,
+              title: 'Option 8',
+              icon: ''
+            }
+          ]
+        },
+        {
+          key: 'sub2',
+          title: 'Navigation two',
+          icon: 'appstore',
+          children: [
+            {
+              key: '9',
+              title: 'Option 9',
+              icon: ''
+            },
+            {
+              key: '10',
+              title: "Option 10",
+              icon: ''
+            }
+          ]
+        },
+        {
+          key: '3',
+          title: 'Setting',
+          icon: 'setting'
+        }
+      ]
     }
   },
   props: {
