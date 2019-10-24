@@ -5,7 +5,13 @@ import {
   Icon,
   LocaleProvider,
   Dropdown,
-  Avatar
+  Avatar,
+  Breadcrumb,
+  Input,
+  Button,
+  Form,
+  Alert,
+  Checkbox
 } from 'ant-design-vue'
 import App from './App.vue'
 import router from './router'
@@ -17,6 +23,12 @@ Vue.use(Icon)
 Vue.use(LocaleProvider)
 Vue.use(Dropdown)
 Vue.use(Avatar)
+Vue.use(Breadcrumb)
+Vue.use(Input)
+Vue.use(Button)
+Vue.use(Form)
+Vue.use(Alert)
+Vue.use(Checkbox)
 
 Vue.config.productionTip = false
 

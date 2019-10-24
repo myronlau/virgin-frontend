@@ -3,7 +3,7 @@
     <div class="links">
       <a>Project Virgin</a>
       <a><a-icon type="github" /></a>
-      <a>Ant Design</a>
+      <a>Bridge Shade</a>
     </div>
     <div class="copyright">
       Copyright <a-icon type="copyright" /> 2019 PolGram

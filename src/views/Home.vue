@@ -1,14 +1,14 @@
 <template>
   <div>
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <global-layout />
-    <!-- <layout /> -->
+    <global-layout>
+      <router-view />
+    </global-layout>  
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import GlobalLayout from '@/components/layout/GlobalLayout.vue'
+import GlobalLayout from '@/components/layouts/GlobalLayout.vue'
 // import Layout from '@/components/layout/Layout.vue'
 
 export default {

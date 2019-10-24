@@ -1,13 +1,13 @@
 <template>
   <a-layout>
     <!-- Sider -->
-    <global-sider :collapsed="collapsed" :collapsible="true"/>
+    <global-sider :menuData="menuData" :collapsed="collapsed" :collapsible="true"/>
     <a-layout>
       <!-- Header -->
       <global-header :collapsed='collapsed' @toggleCollapse="toggleCollapse"/>
       <a-layout-content :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: minHeight }">
         <!-- <router-view/> -->
-        Content
+        <slot></slot>
       </a-layout-content>
       <a-layout-footer style="padding: 0px">
         <global-footer />
@@ -22,6 +22,7 @@ import GlobalHeader from './GlobalHeader'
 import GlobalFooter from './GlobalFooter'
 
 const minHeight = window.innerHeight - 64 - 24 - 24 - 73.6  //header: 64, margin-top: 24, margin-bottom: 24, footer: 73.8
+let menuData = []
 
 export default {
   name: 'GlobalLayout',
@@ -33,22 +34,20 @@ export default {
   data() {
     return {
       collapsed: false,
-      minHeight: minHeight + 'px'
+      minHeight: minHeight + 'px',
+      menuData: menuData
     }
   },
   methods: {
     toggleCollapse() {
       this.collapsed = !this.collapsed
     }
+  },
+  beforeCreate () {
+    menuData = this.$router.options.routes.find((item) => item.path === '/').children
   }
 }
 </script>
 <style lang='less' scoped>
-#layout-trigger .trigger {
-  font-size: 18px;
-  line-height: 64px;
-  padding: 0 24px;
-  cursor: pointer;
-  transition: color .3s;
-}
+
 </style>
